@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        #clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 5em;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #clock div {
+            margin: 0 10px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <div id="clockhour">00</div>
+        <div>:</div>
+        <div id="clockmin">00</div>
+        <div>:</div>
+        <div id="clocksec">00</div>
+    </div>
+
+    <script>
+        var seconds = 0;
+        var minutes = 0;
+        var hours = 0;
+
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+
+        function counterSec() {
+            if (seconds < 59) {
+                seconds++;
+            } else {
+                seconds = 0;
+                minutes++;
+            }
+
+            if (minutes === 60) {
+                minutes = 0;
+                hours++;
+            }
+
+            if (hours === 24) {
+                hours = 0;
+            }
+
+            clocksec.innerText = formatTime(seconds);
+            clockmin.innerText = formatTime(minutes);
+            clockhour.innerText = formatTime(hours);
+        }
+
+        setInterval(counterSec, 1000);
+    </script>
+</body>
+
+</html>
